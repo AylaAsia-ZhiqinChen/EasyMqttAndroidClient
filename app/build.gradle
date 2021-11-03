@@ -1,0 +1,44 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 29
+    buildToolsVersion "29.0.3"
+    defaultConfig {
+        applicationId "com.zs.easy.mqtt.demo"
+        minSdkVersion 19
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+    signingConfigs {
+        release {
+            storeFile file('../platformSign/lark.jks')
+            storePassword 'SunseaIoT2018'
+            keyAlias 'lark'
+            keyPassword 'SunseaIoT2018'
+        }
+        debug {
+            storeFile file("../platformSign/lark.jks")
+            storePassword 'SunseaIoT2018'
+            keyAlias 'lark'
+            keyPassword 'SunseaIoT2018'
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'androidx.appcompat:appcompat:1.0.0'
+    api 'com.github.ZS-ZhangsShun:EasyMqttAndroidClient:1.0.2'
+}
